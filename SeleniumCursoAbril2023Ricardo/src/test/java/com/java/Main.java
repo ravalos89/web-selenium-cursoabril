@@ -1,5 +1,7 @@
 package com.java;
 
+import com.java.ejercicios.Modifier;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -27,6 +29,9 @@ public class Main {
 //		dog2.run();
 //		
 //		System.out.println("El color de mi Dog 2 es: " + dog2.color);
+		
+		Modifier modifier = new Modifier();
+		modifier.hello();
 
 	}
 
