@@ -14,6 +14,7 @@ public class DashboardPage extends Base{
 	// Objects
 	By btnAvatar = By.xpath("//*[@class='oxd-userdropdown-tab']");
 	By btnAdmin = By.xpath("//span[text()='Admin']");
+	By btnDashboard = By.xpath("//span[text()='Dashboard']");
 	By btnLeave = By.xpath("");
 	
 	// Custom Methods
@@ -23,6 +24,11 @@ public class DashboardPage extends Base{
 	
 	public void clickAdmin() {
 		click(btnAdmin);
+	}
+	
+	
+	public void clickDashboard() {
+		click(btnDashboard);
 	}
 
 }

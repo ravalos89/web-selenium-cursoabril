@@ -1,7 +1,13 @@
 package base;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.codec.binary.Base64;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -128,6 +135,36 @@ public class Base {
 			return false;
 		}
 
+	}
+	
+	/**
+	 * Get Data from JSON file (Directly)
+	 * 
+	 * @author Ricardo Avalos
+	 * @param jsonFile, jsonKey
+	 * @return jsonValue
+	 * @throws FileNotFoundException
+	 */
+	public String getJSONValue(String jsonFileObj, String nestedObjKey, String jsonKey){
+		try {
+
+			// JSON Data
+			InputStream inputStream = new FileInputStream(GlobalVariables.PATH_JSON_DATA + jsonFileObj + ".json");
+			JSONObject jsonObject = new JSONObject(new JSONTokener(inputStream));
+
+			// Get Data
+			String jsonValue = (String) jsonObject.getJSONObject(nestedObjKey).get(jsonKey);
+			return jsonValue;
+
+		} catch (FileNotFoundException e) {
+			Assert.fail("JSON file is not found");
+			return null;
+		}
+	}
+	
+	public String getEncryptedValue(String encryptedValue) {
+		byte[] decode = Base64.decodeBase64(encryptedValue);
+		return new String(decode);
 	}
 
 }
