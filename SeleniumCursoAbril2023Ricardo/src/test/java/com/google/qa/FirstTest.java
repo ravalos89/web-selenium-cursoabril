@@ -21,5 +21,7 @@ public class FirstTest {
 		driver.manage().window().maximize();
 
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.google.com/");
+		
+		driver.close();
   }
 }

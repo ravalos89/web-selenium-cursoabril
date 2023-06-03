@@ -16,6 +16,8 @@ public class AdminPage extends Base{
 	
 	// Custom Methods
 	public boolean verifySearchButton() {
+		highlightObject(btnSearch);
+		takeScreenshot("Verified Search Button");
 		return objIsDisplayed(btnSearch);
 	}
 

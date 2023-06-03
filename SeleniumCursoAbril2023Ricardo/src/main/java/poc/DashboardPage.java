@@ -13,22 +13,28 @@ public class DashboardPage extends Base{
 	
 	// Objects
 	By btnAvatar = By.xpath("//*[@class='oxd-userdropdown-tab']");
-	By btnAdmin = By.xpath("//span[text()='Admin']");
+	By btnAdmin = By.xpath("//*[contains(@href, 'viewAdmin')]");
 	By btnDashboard = By.xpath("//span[text()='Dashboard']");
 	By btnLeave = By.xpath("");
 	
 	// Custom Methods
 	public boolean validateUserIsLogged() {
+		implicitWait(10);
+		takeScreenshot("User is logged");
 		return objIsDisplayed(btnAvatar);
 	}
 	
 	public void clickAdmin() {
 		click(btnAdmin);
+		implicitWait(10);
+		takeScreenshot("Clicked Admin Button");
 	}
 	
 	
 	public void clickDashboard() {
 		click(btnDashboard);
+		implicitWait(10);
+		takeScreenshot("Clicked Dashboard Button");
 	}
 
 }

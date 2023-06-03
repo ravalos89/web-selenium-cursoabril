@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Admin" parallel="tests" thread-count="5">
+
+	<test name="Google">
+		<classes>
+			<class name="com.google.qa.FirstTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Google2">
+		<classes>
+			<class name="com.google.qa.FirstTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Google3">
+		<classes>
+			<class name="com.google.qa.FirstTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Google4">
+		<classes>
+			<class name="com.google.qa.FirstTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Google5">
+		<classes>
+			<class name="com.google.qa.FirstTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Google6">
+		<classes>
+			<class name="com.google.qa.FirstTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Google7">
+		<classes>
+			<class name="com.google.qa.FirstTest" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Login">
+		<classes>
+			<class name="com.orange.LoginTests" />
+		</classes>
+	</test> <!-- Test -->
+
+
+</suite> <!-- Suite -->

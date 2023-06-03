@@ -1,16 +1,21 @@
 package base;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
+import javax.imageio.ImageIO;
+
 import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -19,6 +24,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
 
 public class Base {
 
@@ -165,6 +172,52 @@ public class Base {
 	public String getEncryptedValue(String encryptedValue) {
 		byte[] decode = Base64.decodeBase64(encryptedValue);
 		return new String(decode);
+	}
+	
+	/*
+	 * Take screenshot
+	 * 
+	 * @author Ricardo Avalos
+	 * @throws IOException
+	 */
+	public String takeScreenshot(String fileName){
+		try {
+			String pathFileName= GlobalVariables.PATH_SCREENSHOTS + fileName + ".png";
+			Screenshot screenshot = new AShot().takeScreenshot(driver);
+			ImageIO.write(screenshot.getImage(), "PNG", new File(pathFileName));
+			return pathFileName;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+
+	}
+	
+	/*
+	 * Highlight
+	 * @author Ricardo Avalos
+	 * @date 02/23/2021
+	 */
+	public void highlightObject(WebElement element){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
+	}
+	
+	/*
+	 * Highlight
+	 * @author Ricardo Avalos
+	 * @date 02/23/2021
+	 */
+	public void highlightObject(By locator){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement object = driver.findElement(locator);
+		js.executeScript("arguments[0].setAttribute('style', 'background: blue; border: 2px solid red;');", object);
+	}
+	
+	public void clickJavascript(By locator) {
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		WebElement object = driver.findElement(locator);
+		executor.executeScript("arguments[0].click();", object);
 	}
 
 }

@@ -22,10 +22,13 @@ public class LoginPage extends Base{
 		launchBrowser(GlobalVariables.QA_URL);
 		hardWait(10000);
 		implicitWait(20);
+		takeScreenshot("Launch Browser");
 		type(txtUsername, username);
 		type(txtPassword, password);
+		takeScreenshot("Filled out Username and password");
 		explicitWait(btnLogin, 10);
-		click(btnLogin);
+		clickJavascript(btnLogin);
+		hardWait(10000);
 	}
 
 }
